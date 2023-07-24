@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "104664340381",
+    "project_id": "firsttestaapp",
+    "storage_bucket": "firsttestaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104664340381:android:23e74bfca483e0c9724174",
+        "android_client_info": {
+          "package_name": "com.zeoharlem.testaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104664340381-si7veepqeeakamjim6f2p763k0deh4ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF5rtERLt6xrbq5kdCOPuoJj_2JIdJRsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104664340381-si7veepqeeakamjim6f2p763k0deh4ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

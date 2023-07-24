@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/loginFragment">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.zeoharlem.testaapp.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.zeoharlem.testaapp.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.zeoharlem.testaapp.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.zeoharlem.testaapp.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.zeoharlem.testaapp.ui.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.zeoharlem.testaapp.ui.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.zeoharlem.testaapp.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.zeoharlem.testaapp.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.zeoharlem.testaapp.ui.register.RegisterFragment"
+        tools:layout="@layout/register_fragment"
+        android:label="RegisterFragment" />
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.zeoharlem.testaapp.ui.orders.OrderDetailsFragment"
+        android:label="fragment_order_details"
+        tools:layout="@layout/fragment_order_details" />
+    <fragment
+        android:id="@+id/paymentIntegrationFragment"
+        android:name="com.zeoharlem.testaapp.ui.orders.PaymentIntegrationFragment"
+        android:label="fragment_payment_integration"
+        tools:layout="@layout/fragment_payment_integration" />
+    <fragment
+        android:id="@+id/testListSelectedFragment"
+        android:name="com.zeoharlem.testaapp.ui.orders.TestListSelectedFragment"
+        android:label="TestListSelectedFragment" />
+    <!--    <fragment-->
+<!--        android:id="@+id/homeFragment"-->
+<!--        android:name="com.zeoharlem.testaapp.ui.HomeFragment"-->
+<!--        android:label="fragment_home"-->
+<!--        tools:layout="@layout/fragment_home" />-->
+</navigation>
