@@ -10,12 +10,12 @@ apply plugin: 'kotlin-parcelize'
 
 android {
     namespace 'com.zeoharlem.testaapp'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.zeoharlem.testaapp"
         minSdk 24
-        targetSdk 34
+        targetSdk 33
         versionCode 2
         versionName "1.02"
 
@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.0'
 
     //SplashScreen
     implementation 'androidx.core:core-splashscreen:1.0.1'
@@ -58,7 +58,7 @@ dependencies {
     //implementation 'com.android.support:multidex:1.0.3'
 
     //Fragment activityViewModel
-    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+    implementation 'androidx.fragment:fragment-ktx:1.6.1'
 
     //Activity activityViewModel
     implementation 'androidx.activity:activity-ktx:1.7.2'
@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Recyclerview
-    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -101,8 +101,8 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
@@ -111,7 +111,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 
     // Image Loading library Coil
-    implementation "io.coil-kt:coil:2.2.2"
+    implementation "io.coil-kt:coil:2.4.0"
 
     // Gson
     implementation 'com.google.code.gson:gson:2.10'
