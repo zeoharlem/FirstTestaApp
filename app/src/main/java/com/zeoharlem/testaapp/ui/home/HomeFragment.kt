@@ -24,10 +24,15 @@ import com.zeoharlem.testaapp.R
 import com.zeoharlem.testaapp.adapter.CategoryAdapter
 import com.zeoharlem.testaapp.adapter.FrequentlyBookedAdapter
 import com.zeoharlem.testaapp.databinding.FragmentHomeBinding
+import com.zeoharlem.testaapp.extensions.convertToObject
+import com.zeoharlem.testaapp.extensions.convertToUserData
+import com.zeoharlem.testaapp.models.UserData
 import com.zeoharlem.testaapp.ui.test.TestViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -71,6 +76,7 @@ class HomeFragment : Fragment() {
 
     private fun init() {
         prepareMenuAction()
+        setUpUserDisplay()
         testViewModel.getCartMenuItems().observe(viewLifecycleOwner) {
             menuItemCount = it.size
         }
@@ -82,6 +88,21 @@ class HomeFragment : Fragment() {
                 viewModel.categoryStateFlow.collectLatest {
                     categoryAdapter.submitList(it.addresses)
                     frequentlyBookedAdapter.submitList(it.addresses)
+                }
+            }
+        }
+    }
+
+    private fun setUpUserDisplay() {
+        with(binding) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.cacheData.getUserData().collectLatest {
+                        it?.let {
+                            val userData = convertToUserData(element = it)
+                            userFullName.text = userData.getFullName()
+                        }
+                    }
                 }
             }
         }

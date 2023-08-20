@@ -73,6 +73,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_field"
                     android:layout_width="match_parent"
+                    android:text="johson@yahoo.co.uk"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -93,6 +94,7 @@
                     android:id="@+id/password_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="admin2020"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 

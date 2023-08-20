@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -21,7 +23,15 @@ import com.google.android.gms.auth.api.identity.SignInCredential
 import com.google.android.gms.common.api.ApiException
 import com.zeoharlem.testaapp.R
 import com.zeoharlem.testaapp.databinding.FragmentLoginBinding
+import com.zeoharlem.testaapp.extensions.prettyGson
+import com.zeoharlem.testaapp.models.LoginRequest
+import com.zeoharlem.testaapp.ui.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<IntentSenderRequest>
@@ -31,6 +41,8 @@ class LoginFragment : Fragment() {
 
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
+
+    private val viewModel by activityViewModels<HomeViewModel>()
 
     private val REQ_ONE_TAP = 2
     private var showOneTapUI = true
@@ -45,6 +57,8 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(layoutInflater)
+
+        checkUserLoggedIn()
 
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()
@@ -111,21 +125,49 @@ class LoginFragment : Fragment() {
                     }
             }
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             loginButton.setOnClickListener {
-                findNavController().navigate(R.id.navigation_home)
+                viewModel.loginUser(
+                    LoginRequest(
+                        email = emailField.text.toString(),
+                        password = passwordField.text.toString()
+                    )
+                )
             }
 
             signupLinkLabel.setOnClickListener {
                 findNavController().navigate(R.id.registerFragment)
             }
         }
+        observeStateFlow()
+        //googleSignInEvent()
+    }
 
-        googleSignInEvent()
+    private fun observeStateFlow() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(state = Lifecycle.State.STARTED) {
+                viewModel.loginStateFlow.collectLatest {
+                    it.data?.let { response ->
+                        println("collectLatest: ${prettyGson(response)}")
+                        findNavController().navigate(R.id.navigation_home)
+                    }
+                }
+            }
+        }
+
+    }
+
+    private fun checkUserLoggedIn() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (viewModel.cacheData.userIsLoggedIn()) {
+                findNavController().navigate(R.id.navigation_home)
+            }
+        }
     }
 
     override fun onDestroyView() {

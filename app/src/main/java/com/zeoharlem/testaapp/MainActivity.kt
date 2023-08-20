@@ -20,7 +20,9 @@ import com.zeoharlem.testaapp.extensions.toLocalPrice
 import com.zeoharlem.testaapp.models.CartMenu
 import com.zeoharlem.testaapp.models.Tests
 import com.zeoharlem.testaapp.ui.test.TestViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
