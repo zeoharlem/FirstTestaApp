@@ -21,6 +21,7 @@ class ApiServices {
         emit(categoryList)
         delay(2000)
     }
+
     fun getTestList(): Flow<List<CartMenu<Tests>>> = flow {
         val lists = mutableListOf(
             CartMenu(Tests(1, "infections", "2500"), 0),

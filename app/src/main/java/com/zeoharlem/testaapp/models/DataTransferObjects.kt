@@ -2,7 +2,6 @@ package com.zeoharlem.testaapp.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.zeoharlem.testaapp.extensions.toTitleCase
 import com.zeoharlem.testaapp.extensions.toWordTitleCase
 import kotlinx.parcelize.Parcelize
 
@@ -30,8 +29,23 @@ data class LoginResponse(
     var token: String = "",
     @SerializedName("user")
     var userData: UserData? = null,
-    var id: String = userData?.id.toString(),
 ): Parcelable
+
+@Parcelize
+data class Category(
+    @SerializedName("id")
+    val categoryId: Int,
+    @SerializedName("title")
+    val categoryTitle: String,
+    @SerializedName("url_image")
+    val urlImage: String? = null,
+    @SerializedName("content_desc")
+    val description: String? = null,
+    @SerializedName("status")
+    val status: String = "",
+    @SerializedName("code")
+    val code: String = "",
+) : Parcelable
 
 @Parcelize
 data class UserData(

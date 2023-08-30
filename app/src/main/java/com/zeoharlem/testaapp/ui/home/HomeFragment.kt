@@ -14,7 +14,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -24,9 +23,7 @@ import com.zeoharlem.testaapp.R
 import com.zeoharlem.testaapp.adapter.CategoryAdapter
 import com.zeoharlem.testaapp.adapter.FrequentlyBookedAdapter
 import com.zeoharlem.testaapp.databinding.FragmentHomeBinding
-import com.zeoharlem.testaapp.extensions.convertToObject
 import com.zeoharlem.testaapp.extensions.convertToUserData
-import com.zeoharlem.testaapp.models.UserData
 import com.zeoharlem.testaapp.ui.test.TestViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -86,8 +83,9 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.categoryStateFlow.collectLatest {
-                    categoryAdapter.submitList(it.addresses)
-                    frequentlyBookedAdapter.submitList(it.addresses)
+                    println("CategoryResult: ${it.data}")
+                    categoryAdapter.submitList(it.data)
+                    frequentlyBookedAdapter.submitList(it.data)
                 }
             }
         }
@@ -97,8 +95,8 @@ class HomeFragment : Fragment() {
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.cacheData.getUserData().collectLatest {
-                        it?.let {
+                    viewModel.cacheData.getUserData().let {
+                        it.let {
                             val userData = convertToUserData(element = it)
                             userFullName.text = userData.getFullName()
                         }

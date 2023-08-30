@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
 
-    private val viewModel by activityViewModels<HomeViewModel>()
+    private val viewModel by activityViewModels<AuthViewModel>()
 
     private val REQ_ONE_TAP = 2
     private var showOneTapUI = true
